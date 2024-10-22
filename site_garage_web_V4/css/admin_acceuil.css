@@ -1,0 +1,74 @@
+.centre{
+    text-align: center;
+}
+
+.ajout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    height: auto;
+    width: auto;
+    background-color: rgb(2, 190, 30);
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    -webkit-box-align: center;
+
+}
+.modif{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    height: auto;
+    width: auto;
+    background-color: rgb(228, 134, 26);
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    -webkit-box-align: center;
+
+}
+.suppr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    height: auto;
+    width: auto;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    -webkit-box-align: center;
+
+}
+.affiche{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    height: auto;
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    -webkit-box-align: center;
+
+}
+.logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    height: auto;
+    width: auto;
+    background-color: rgb(179, 179, 179);
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 0.5rem;
+    -webkit-box-align: center;
+
+}

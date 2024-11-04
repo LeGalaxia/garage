@@ -1,0 +1,6 @@
+Utiliser ‘garagemaxens_bdd.sql’ pour recréer la base de donnée ;
+
+Il faut créer 2 compte pour le site :
+un compte pour le client qui va visiter le site qui s’appellera ‘client’ il n’a pas de mot de passe et il ne peut que select la base de donnée ‘garagemaxens_bdd’ 
+
+Et un compte administrateur qui lui sert pour la partie admin du site qui lui s’appellera ‘admin_garage’ et a pour mot de passe ‘ 5.kK:&M]aiZQ&E# ’ et qui lui peut SELECT, UPDATE, DELETE, INSERT dans la base de donnée ‘garagemaxens_bdd’ ;

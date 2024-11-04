@@ -1,6 +1,0 @@
-GRANT USAGE ON *.* TO `admin_garage`@`%`;
-
-GRANT SELECT, INSERT, UPDATE, DELETE ON `garage`.* TO `admin_garage`@`%`;
-
-
-mdp:5.kK:&M]aiZQ&E#

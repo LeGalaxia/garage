@@ -1,8 +1,8 @@
 <?php
-//vérification si il y a une session pour pouvoir utiliser le fichier "connexion.php"
+//v�rification si il y a une session pour pouvoir utiliser le fichier "connexion.php"
 
 
-// Vérifier si l'utilisateur est connecté
+// V�rifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;

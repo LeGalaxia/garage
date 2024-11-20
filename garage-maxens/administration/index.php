@@ -2,6 +2,27 @@
 
 include("config.php");
 
+function logConnection($identifiant, $status) {
+    $logFile = 'logs/connections.log'; // Chemin vers le fichier de log des connexions
+    
+    date_default_timezone_set('Pacific/Noumea'); // Définir le fuseau horaire sur UTC+11
+    
+    $date = date('Y-m-d H:i:s'); // Date et heure de la connexion
+    $ipAddress = $_SERVER['REMOTE_ADDR']; // Adresse IP de l'utilisateur
+    $userAgent = $_SERVER['HTTP_USER_AGENT']; // Navigateur utilisé par l'utilisateur
+
+    // Format du message de log
+    $logMessage = "[$date] $status: Tentative de connexion pour l'identifiant '$identifiant' (IP: $ipAddress, Navigateur: $userAgent)\n";
+
+    // Créer le dossier de logs s'il n'existe pas encore
+    if (!file_exists(dirname($logFile))) {
+        mkdir(dirname($logFile), 0777, true);
+    }
+
+    // Ajouter le message au fichier log
+    file_put_contents($logFile, $logMessage, FILE_APPEND);
+}
+
 $message = '';
 
 if (isset($_POST['identifiant']) && isset($_POST['password'])) {
@@ -14,14 +35,24 @@ if (isset($_POST['identifiant']) && isset($_POST['password'])) {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
+        // Connexion réussie
         session_start();
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_identifiant'] = $identifiant;
+
+        logConnection($identifiant, 'SUCCESS'); // Enregistrement de la connexion réussie
         header('Location: page_admin_acceuille.php');
+        exit();
     } else {
+        // Connexion échouée
         $message = 'Mauvais identifiants';
+        logConnection($identifiant, 'FAIL'); // Enregistrement de la tentative échouée
     }
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="fr">

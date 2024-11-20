@@ -21,15 +21,22 @@
             <label for="marqueChoix">Marque :</label>
             <select name="marqueChoix" id="marqueChoix">
                 <?php
+            //Garde la marque choisie sur la liste d�roulante
+            if (isset($_POST['marqueChoix'])) {
+                $marqueChoix = $_POST['marqueChoix'];
+                echo "<option value='".$marqueChoix."'>".$marqueChoix."</option>";
+            }
+
                 include "client.php";
                 $sql = 'SELECT DISTINCT marque FROM vehicule';
                 $listemarque = $connexion->query($sql);
 
                 while ($marque = $listemarque->fetch_assoc()) {
-                    echo "<option value='".$marque['marque']."'>".$marque['marque']."</option>";
+                    if($marque['marque']!=$marqueChoix){
+                        echo "<option value='".$marque['marque']."'>".$marque['marque']."</option>";
+                        }
                 }
-                ?>
-            </select>
+                ?>            </select>
             <input type="hidden" name="recherche" id="recherche" value="true"/>
             <input type="submit" value="Rechercher"/>
         </form>
@@ -56,11 +63,11 @@
 
         // Construire la requête SQL en fonction de la sélection
         if ($recherche == "true") {
-            $sql = "SELECT `marque`, `modele`, `anneecircu`, `prix`, `rtrgarage`, `cvfiscaux`, `description_vehic` 
+            $sql = "SELECT *
                     FROM `vehicule` 
                     WHERE `marque` = '$marqueChoix';";
         } else {
-            $sql = "SELECT `marque`, `modele`, `anneecircu`, `prix`, `rtrgarage`, `cvfiscaux`, `description_vehic` 
+            $sql = "SELECT *
                     FROM `vehicule`;";
         }
 
@@ -68,20 +75,21 @@
         echo '<div class="table-container">';
         echo '<table border="5" class="car-table">';
         echo '<thead>';
-        echo '<tr><th>Marque</th><th>Modèle</th><th>Année de mise en circulation</th><th>Prix</th><th>Rentré au garage</th><th>Chevaux fiscaux</th><th>Description du Véhicule</th></tr>';
+        echo '<tr><th>Marque</th><th>Modèle</th><th>Année de mise en circulation</th><th>Prix</th><th>Rentré au garage</th><th>Chevaux fiscaux</th><th>Description du Véhicule</th><th>Image</th></tr>';
         echo '</thead>';
         echo '<tbody>';
 
         $listevehicule = $connexion->query($sql);
         while ($vehicule = $listevehicule->fetch_assoc()) {
             echo '<tr>';
-            echo '<td class="rouge">'.$vehicule['marque'].'</td>';
+            echo '<td>'.$vehicule['marque'].'</td>';
             echo '<td>'.$vehicule['modele'].'</td>';
             echo '<td>'.$vehicule['anneecircu'].'</td>';
             echo '<td>'.$vehicule['prix'].' €</td>';
             echo '<td>'.$vehicule['rtrgarage'].'</td>';
             echo '<td>'.$vehicule['cvfiscaux'].'</td>';
             echo '<td>'.$vehicule['description_vehic'].'</td>';
+            echo '<td><img src="images/voiture/' .$vehicule['immatriculation'].'.jpg " width="125" height="75"></td>';
             echo '</tr>';
         }
 
